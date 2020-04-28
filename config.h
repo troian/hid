@@ -2,9 +2,11 @@
 #define CONFIG_H
 
 #ifdef OS_LINUX
-  #define POLL_POSIX
-  #define THREADS_POSIX
-  #define HAVE_CLOCK_GETTIME
+  #ifndef HIDRAW
+    #define POLL_POSIX
+    #define THREADS_POSIX
+    #define HAVE_CLOCK_GETTIME
+  #endif
 #endif
 
 #ifdef OS_DARWIN
