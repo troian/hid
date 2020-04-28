@@ -11,7 +11,7 @@ package hid
 /*
 #cgo CFLAGS: -I./hidapi/hidapi
 
-#cgo linux CFLAGS: -I./libusb/libusb -DDEFAULT_VISIBILITY="" -DOS_LINUX -D_GNU_SOURCE -DPOLL_NFDS_TYPE=int
+#cgo linux CFLAGS: -I./libusb/libusb -DDEFAULT_VISIBILITY="" -DOS_LINUX -D_GNU_SOURCE
 #cgo linux,!android LDFLAGS: -lrt
 #cgo darwin CFLAGS: -DOS_DARWIN
 #cgo darwin LDFLAGS: -framework CoreFoundation -framework IOKit
@@ -33,6 +33,7 @@ package hid
 	#include "strerror.c"
 	#include "sync.c"
 
+	#undef _GNU_SOURCE // it's already defined in the c-file
 	#include "hidapi/libusb/hid.c"
 #elif OS_DARWIN
 	#include "hidapi/mac/hid.c"
