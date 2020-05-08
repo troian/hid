@@ -73,3 +73,12 @@ func (dev *Device) Read(b []byte) (int, error) {
 func (dev *Device) GetFeatureReport(b []byte) (int, error) {
 	return 0, ErrUnsupportedPlatform
 }
+
+// GetInputReport retreives a input report from a HID device
+//
+// Set the first byte of []b to the Report ID of the report to be read. Make
+// sure to allow space for this extra byte in []b. Upon return, the first byte
+// will still contain the Report ID, and the report data will start in b[1].
+func (dev *Device) GetInputReport(b []byte) (int, error) {
+	return 0, ErrUnsupportedPlatform
+}
