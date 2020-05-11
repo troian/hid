@@ -65,11 +65,30 @@ func (dev *Device) Read(b []byte) (int, error) {
 	return 0, ErrUnsupportedPlatform
 }
 
-// GetFeatureReport retreives a feature report from a HID device
+// GetFeatureReport retrieves a feature report from a HID device
 //
 // Set the first byte of []b to the Report ID of the report to be read. Make
 // sure to allow space for this extra byte in []b. Upon return, the first byte
 // will still contain the Report ID, and the report data will start in b[1].
 func (dev *Device) GetFeatureReport(b []byte) (int, error) {
+	return 0, ErrUnsupportedPlatform
+}
+
+// GetInputReport retrieves a input report from a HID device
+//
+// Set the first byte of []b to the Report ID of the report to be read. Make
+// sure to allow space for this extra byte in []b. Upon return, the first byte
+// will still contain the Report ID, and the report data will start in b[1].
+func (dev *Device) GetInputReport(b []byte) (int, error) {
+	return 0, ErrUnsupportedPlatform
+}
+
+// SetNonblocking sets the device handle to be non-blocking.
+//
+// In non-blocking mode calls to Read() will return
+// immediately with a value of 0 if there is no data to be
+// read. In blocking mode, Read() will wait (block) until
+// there is data to read before returning.
+func (dev *Device) SetNonblocking(b bool) error {
 	return 0, ErrUnsupportedPlatform
 }
