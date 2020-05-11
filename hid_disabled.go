@@ -82,3 +82,13 @@ func (dev *Device) GetFeatureReport(b []byte) (int, error) {
 func (dev *Device) GetInputReport(b []byte) (int, error) {
 	return 0, ErrUnsupportedPlatform
 }
+
+// SetNonblocking sets the device handle to be non-blocking.
+//
+// In non-blocking mode calls to Read() will return
+// immediately with a value of 0 if there is no data to be
+// read. In blocking mode, Read() will wait (block) until
+// there is data to read before returning.
+func (dev *Device) SetNonblocking(b bool) error {
+	return 0, ErrUnsupportedPlatform
+}

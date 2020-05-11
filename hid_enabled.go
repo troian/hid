@@ -372,3 +372,45 @@ func (dev *Device) GetInputReport(b []byte) (int, error) {
 
 	return read, nil
 }
+
+// SetNonblocking sets the device handle to be non-blocking.
+//
+// In non-blocking mode calls to Read() will return
+// immediately with a value of 0 if there is no data to be
+// read. In blocking mode, Read() will wait (block) until
+// there is data to read before returning.
+func (dev *Device) SetNonblocking(b bool) error {
+	// Abort if device closed in between
+	dev.lock.Lock()
+	device := dev.device
+	dev.lock.Unlock()
+
+	if device == nil {
+		return ErrDeviceClosed
+	}
+
+	i := C.int(0)
+	if b {
+		i = 1
+	}
+	res := int(C.hid_set_nonblocking(device, i))
+	if res == -1 {
+		// If the read failed, verify if closed or other error
+		dev.lock.Lock()
+		device = dev.device
+		dev.lock.Unlock()
+
+		if device == nil {
+			return ErrDeviceClosed
+		}
+		// Device not closed, some other error occurred
+		message := C.hid_error(device)
+		if message == nil {
+			return errors.New("hidapi: unknown failure")
+		}
+		failure, _ := wcharTToString(message)
+		return errors.New("hidapi: " + failure)
+	}
+
+	return nil
+}
