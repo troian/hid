@@ -1,13 +1,14 @@
 [![Travis][travisimg]][travisurl]
-[![AppVeyor][appveyorimg]][appveyorurl]
 [![GoDoc][docimg]][docurl]
 
-[travisimg]:   https://travis-ci.org/karalabe/hid.svg?branch=master
-[travisurl]:   https://travis-ci.org/karalabe/hid
+[comment]: # ([![AppVeyor][appveyorimg]][appveyorurl])
+
+[travisimg]:   https://travis-ci.org/bearsh/hid.svg?branch=master
+[travisurl]:   https://travis-ci.org/bearsh/hid
 [appveyorimg]: https://ci.appveyor.com/api/projects/status/plroy54odykb0ch3/branch/master?svg=true
 [appveyorurl]: https://ci.appveyor.com/project/karalabe/hid
-[docimg]:      https://godoc.org/github.com/karalabe/hid?status.svg
-[docurl]:      https://godoc.org/github.com/karalabe/hid
+[docimg]:      https://godoc.org/github.com/bearsh/hid?status.svg
+[docurl]:      https://godoc.org/github.com/bearsh/hid
 
 # Gopher Interface Devices (USB HID)
 
