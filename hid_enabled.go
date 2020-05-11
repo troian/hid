@@ -287,7 +287,7 @@ func (dev *Device) ReadTimeout(b []byte, timeout int) (int, error) {
 	return read, nil
 }
 
-// GetFeatureReport retreives a feature report from a HID device
+// GetFeatureReport retrieves a feature report from a HID device
 //
 // Set the first byte of []b to the Report ID of the report to be read. Make
 // sure to allow space for this extra byte in []b. Upon return, the first byte
@@ -318,7 +318,7 @@ func (dev *Device) GetFeatureReport(b []byte) (int, error) {
 			return 0, ErrDeviceClosed
 		}
 
-		// Device not closed, some other error occured
+		// Device not closed, some other error occurred
 		message := C.hid_error(device)
 		if message == nil {
 			return 0, errors.New("hidapi: unknown failure")
@@ -330,7 +330,7 @@ func (dev *Device) GetFeatureReport(b []byte) (int, error) {
 	return read, nil
 }
 
-// GetInputReport retreives a input report from a HID device
+// GetInputReport retrieves a input report from a HID device
 //
 // Set the first byte of []b to the Report ID of the report to be read. Make
 // sure to allow space for this extra byte in []b. Upon return, the first byte
@@ -361,7 +361,7 @@ func (dev *Device) GetInputReport(b []byte) (int, error) {
 			return 0, ErrDeviceClosed
 		}
 
-		// Device not closed, some other error occured
+		// Device not closed, some other error occurred
 		message := C.hid_error(device)
 		if message == nil {
 			return 0, errors.New("hidapi: unknown failure")
