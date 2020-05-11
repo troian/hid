@@ -17,12 +17,19 @@ cases where devices support this ligher mode of operation (e.g. input devices, h
 
 The package wraps [`hidapi`](https://github.com/libusb/hidapi) for accessing OS specific USB HID APIs
 directly instead of using low level USB constructs, which might have permission issues on some platforms.
-On Linux the package also wraps [`libusb`](https://github.com/libusb/libusb). Both of these dependencies
-are vendored directly into the repository and wrapped using CGO, making the `hid` package self-contained
-and go-gettable.
+On Linux the package uses either [`libusb`](https://github.com/libusb/libusb) (default) or `hidraw` as backend.
+All of these dependencies are vendored directly into the repository and wrapped using CGO,
+making the `hid` package self-contained and go-gettable.
 
 Supported platforms at the moment are Linux, macOS and Windows (exclude constraints are also specified
 for Android and iOS to allow smoother vendoring into cross platform projects).
+
+## Libusb backend selection (linux only)
+
+If nothing is specified, `libusb` is used as backend for `hidapi`. To use the `hidraw` backend, build it with
+```
+go build -tags hidraw
+```
 
 ## Cross-compiling
 
