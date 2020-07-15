@@ -7,8 +7,8 @@
 [travisurl]:   https://travis-ci.org/bearsh/hid
 [appveyorimg]: https://ci.appveyor.com/api/projects/status/plroy54odykb0ch3/branch/master?svg=true
 [appveyorurl]: https://ci.appveyor.com/project/karalabe/hid
-[docimg]:      https://godoc.org/github.com/bearsh/hid?status.svg
-[docurl]:      https://godoc.org/github.com/bearsh/hid
+[docimg]:      https://pkg.go.dev/badge/github.com/bearsh/hid
+[docurl]:      https://pkg.go.dev/github.com/bearsh/hid
 
 # Gopher Interface Devices (USB HID)
 
