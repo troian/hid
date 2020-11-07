@@ -69,6 +69,12 @@ struct hid_device_ {
 	wchar_t *last_error_str;
 };
 
+static struct hid_api_version api_version = {
+	.major = HID_API_VERSION_MAJOR,
+	.minor = HID_API_VERSION_MINOR,
+	.patch = HID_API_VERSION_PATCH
+};
+
 /* Global error message that is not specific to a device, e.g. for
    hid_open(). It is thread-local like errno. */
 __thread wchar_t *last_global_error_str = NULL;
@@ -374,6 +380,16 @@ end:
 	return ret;
 }
 
+HID_API_EXPORT const struct hid_api_version* HID_API_CALL hid_version()
+{
+	return &api_version;
+}
+
+HID_API_EXPORT const char* HID_API_CALL hid_version_str()
+{
+	return HID_API_VERSION_STR;
+}
+
 int HID_API_EXPORT hid_init(void)
 {
 	const char *locale;
@@ -652,7 +668,7 @@ hid_device * HID_API_EXPORT hid_open_path(const char *path)
 	dev->device_handle = open(path, O_RDWR);
 
 	/* If we have a good handle, return it. */
-	if (dev->device_handle > 0) {
+	if (dev->device_handle >= 0) {
 		/* Set device error to none */
 		register_device_error(dev, NULL);
 

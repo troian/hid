@@ -16,7 +16,7 @@ package hid
 #cgo hidraw,linux CFLAGS: -DOS_LINUX -D_GNU_SOURCE -DHIDRAW
 #cgo hidraw,linux,!android pkg-config: libudev
 #cgo darwin CFLAGS: -DOS_DARWIN
-#cgo darwin LDFLAGS: -framework CoreFoundation -framework IOKit
+#cgo darwin LDFLAGS: -framework CoreFoundation -framework IOKit -framework AppKit
 #cgo windows CFLAGS: -DOS_WINDOWS
 #cgo windows LDFLAGS: -lsetupapi
 
