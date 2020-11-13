@@ -1,12 +1,11 @@
 [![Travis][travisimg]][travisurl]
 [![GoDoc][docimg]][docurl]
-
-[comment]: # ([![AppVeyor][appveyorimg]][appveyorurl])
+[![AppVeyor][appveyorimg]][appveyorurl]
 
 [travisimg]:   https://travis-ci.org/bearsh/hid.svg?branch=master
 [travisurl]:   https://travis-ci.org/bearsh/hid
-[appveyorimg]: https://ci.appveyor.com/api/projects/status/plroy54odykb0ch3/branch/master?svg=true
-[appveyorurl]: https://ci.appveyor.com/project/karalabe/hid
+[appveyorimg]: https://ci.appveyor.com/api/projects/status/8lngogiq0dhk78hh/branch/master?svg=true
+[appveyorurl]: https://ci.appveyor.com/project/bearsh/hid
 [docimg]:      https://pkg.go.dev/badge/github.com/bearsh/hid
 [docurl]:      https://pkg.go.dev/github.com/bearsh/hid
 
