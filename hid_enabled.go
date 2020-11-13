@@ -13,6 +13,7 @@ package hid
 
 #cgo !hidraw,linux CFLAGS: -I. -I./libusb/libusb -DDEFAULT_VISIBILITY="" -DOS_LINUX -D_GNU_SOURCE -DPLATFORM_POSIX
 #cgo !hidraw,linux,!android LDFLAGS: -lrt
+#cgo !hidraw,linux,noiconv CFLAGS: -DNO_ICONV
 #cgo hidraw,linux CFLAGS: -DOS_LINUX -D_GNU_SOURCE -DHIDRAW
 #cgo hidraw,linux,!android pkg-config: libudev
 #cgo darwin CFLAGS: -DOS_DARWIN
