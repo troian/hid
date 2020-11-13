@@ -90,5 +90,5 @@ func (dev *Device) GetInputReport(b []byte) (int, error) {
 // read. In blocking mode, Read() will wait (block) until
 // there is data to read before returning.
 func (dev *Device) SetNonblocking(b bool) error {
-	return 0, ErrUnsupportedPlatform
+	return ErrUnsupportedPlatform
 }
