@@ -28,7 +28,6 @@ package hid
 	#include <poll.h>
 	#include "os/events_posix.c"
 	#include "os/threads_posix.c"
-	#include "os/poll_posix.c"
 
 	#include "os/linux_usbfs.c"
 	#include "os/linux_netlink.c"
