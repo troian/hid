@@ -20,6 +20,9 @@ matrix:
     - os: linux
       dist: bionic
       go: 1.14.x
+    - os: linux
+      dist: bionic
+      go: 1.15.x
     - os: osx
       go: 1.12.x
 

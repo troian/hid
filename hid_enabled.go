@@ -11,12 +11,13 @@ package hid
 /*
 #cgo CFLAGS: -I./hidapi/hidapi
 
-#cgo !hidraw,linux CFLAGS: -I. -I./libusb/libusb -DDEFAULT_VISIBILITY="" -DOS_LINUX -D_GNU_SOURCE
+#cgo !hidraw,linux CFLAGS: -I. -I./libusb/libusb -DDEFAULT_VISIBILITY="" -DOS_LINUX -D_GNU_SOURCE -DPLATFORM_POSIX
 #cgo !hidraw,linux,!android LDFLAGS: -lrt
+#cgo !hidraw,linux,noiconv CFLAGS: -DNO_ICONV
 #cgo hidraw,linux CFLAGS: -DOS_LINUX -D_GNU_SOURCE -DHIDRAW
 #cgo hidraw,linux,!android pkg-config: libudev
 #cgo darwin CFLAGS: -DOS_DARWIN
-#cgo darwin LDFLAGS: -framework CoreFoundation -framework IOKit
+#cgo darwin LDFLAGS: -framework CoreFoundation -framework IOKit -framework AppKit
 #cgo windows CFLAGS: -DOS_WINDOWS
 #cgo windows LDFLAGS: -lsetupapi
 
@@ -25,8 +26,8 @@ package hid
 	#include "hidapi/linux/hid.c"
 	#else
 	#include <poll.h>
+	#include "os/events_posix.c"
 	#include "os/threads_posix.c"
-	#include "os/poll_posix.c"
 
 	#include "os/linux_usbfs.c"
 	#include "os/linux_netlink.c"
