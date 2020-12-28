@@ -246,13 +246,22 @@ func (dev *Device) SendFeatureReport(b []byte) (int, error) {
 	return written, nil
 }
 
-// Read retrieves an input report from a HID device, blocking and waiting for a response
+// Read is a wrapper to ReadTimeout that will check if device blocking is enabled
+// and set timeout accordingly.
+//
+// This reproduces C.hid_read() behaviour in wrapping hid_read_timeout:
+// return hid_read_timeout(dev, data, length, (dev->blocking)? -1: 0);
 func (dev *Device) Read(b []byte) (int, error) {
-	return dev.ReadTimeout(b, 0)
+	var timeout int
+	blocking := int(dev.device.blocking) == 1
+	if blocking {
+		timeout = -1
+	}
+	return dev.ReadTimeout(b, timeout)
 }
 
-// ReadTimeout retrieves an input report from a HID device with a timeout. If timeout is 0 a
-// blocking read is performed.
+// ReadTimeout retrieves an input report from a HID device with a timeout. If timeout is -1 a
+// blocking read is performed, else a non-blocking that waits timeout milliseconds
 func (dev *Device) ReadTimeout(b []byte, timeout int) (int, error) {
 	// Abort if nothing to read
 	if len(b) == 0 {
