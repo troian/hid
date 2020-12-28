@@ -65,6 +65,12 @@ func (dev *Device) Read(b []byte) (int, error) {
 	return 0, ErrUnsupportedPlatform
 }
 
+// ReadTimeout retrieves an input report from a HID device. On platforms that build with
+// this file the implemented method just returns an error.
+func (dev *Device) ReadTimeout(b []byte, t int) (int, error) {
+	return 0, ErrUnsupportedPlatform
+}
+
 // GetFeatureReport retrieves a feature report from a HID device
 //
 // Set the first byte of []b to the Report ID of the report to be read. Make
