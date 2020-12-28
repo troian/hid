@@ -253,8 +253,7 @@ func (dev *Device) SendFeatureReport(b []byte) (int, error) {
 // return hid_read_timeout(dev, data, length, (dev->blocking)? -1: 0);
 func (dev *Device) Read(b []byte) (int, error) {
 	var timeout int
-	blocking := int(dev.device.blocking) == 1
-	if blocking {
+	if int(dev.device.blocking) == 1 {
 		timeout = -1
 	}
 	return dev.ReadTimeout(b, timeout)
