@@ -14,14 +14,14 @@
 package hid
 
 import (
-	_ "github.com/bearsh/hid/hidapi"
-	_ "github.com/bearsh/hid/hidapi/hidapi"
-	_ "github.com/bearsh/hid/hidapi/libusb"
-	_ "github.com/bearsh/hid/hidapi/linux"
-	_ "github.com/bearsh/hid/hidapi/mac"
-	_ "github.com/bearsh/hid/hidapi/windows"
+	_ "github.com/troian/hid/hidapi"
+	_ "github.com/troian/hid/hidapi/hidapi"
+	_ "github.com/troian/hid/hidapi/libusb"
+	_ "github.com/troian/hid/hidapi/linux"
+	_ "github.com/troian/hid/hidapi/mac"
+	_ "github.com/troian/hid/hidapi/windows"
 
-	_ "github.com/bearsh/hid/libusb"
-	_ "github.com/bearsh/hid/libusb/libusb"
-	_ "github.com/bearsh/hid/libusb/libusb/os"
+	_ "github.com/troian/hid/libusb"
+	_ "github.com/troian/hid/libusb/libusb"
+	_ "github.com/troian/hid/libusb/libusb/os"
 )
