@@ -2,12 +2,12 @@
 [![GoDoc][docimg]][docurl]
 [![AppVeyor][appveyorimg]][appveyorurl]
 
-[travisimg]:   https://travis-ci.org/bearsh/hid.svg?branch=master
-[travisurl]:   https://travis-ci.org/bearsh/hid
+[travisimg]:   https://travis-ci.org/Zondax/hid.svg?branch=master
+[travisurl]:   https://travis-ci.org/Zondax/hid
 [appveyorimg]: https://ci.appveyor.com/api/projects/status/8lngogiq0dhk78hh/branch/master?svg=true
-[appveyorurl]: https://ci.appveyor.com/project/bearsh/hid
-[docimg]:      https://pkg.go.dev/badge/github.com/bearsh/hid
-[docurl]:      https://pkg.go.dev/github.com/bearsh/hid
+[appveyorurl]: https://ci.appveyor.com/project/Zondax/hid
+[docimg]:      https://pkg.go.dev/badge/github.com/Zondax/hid
+[docurl]:      https://pkg.go.dev/github.com/Zondax/hid
 
 # Gopher Interface Devices (USB HID)
 
