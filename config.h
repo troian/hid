@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #ifdef OS_LINUX
+  #define PLATFORM_POSIX 1
   #ifndef HIDRAW
     #define POLL_POSIX
     #define THREADS_POSIX
@@ -17,6 +18,7 @@
 #if OS_WINDOWS
   #define POLL_WINDOWS
   #define THREADS_WINDOWS
+  #define PLATFORM_WINDOWS 1
 #endif
 
 #endif /* CONFIG_H */

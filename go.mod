@@ -1,3 +1,3 @@
-module github.com/bearsh/hid
+module github.com/Zondax/hid
 
-go 1.14
+go 1.16
