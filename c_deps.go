@@ -21,7 +21,7 @@ import (
 	_ "github.com/zondax/hid/hidapi/mac"
 	_ "github.com/zondax/hid/hidapi/windows"
 
-	_ "github.com/zondax/hid/hid/libusb"
-	_ "github.com/zondax/hid/hid/libusb/libusb"
-	_ "github.com/zondax/hid/hid/libusb/libusb/os"
+	_ "github.com/zondax/hid/libusb"
+	_ "github.com/zondax/hid/libusb/libusb"
+	_ "github.com/zondax/hid/libusb/libusb/os"
 )
