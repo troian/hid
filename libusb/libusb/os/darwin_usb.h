@@ -32,6 +32,10 @@
 
 /* IOUSBInterfaceInferface */
 
+#if (MAC_OS_X_VERSION_MIN_REQUIRED < 120000)
+#define kIOMainPortDefault kIOMasterPortDefault
+#endif
+
 /* New in OS 10.12.0. */
 #if defined (kIOUSBInterfaceInterfaceID800) && (MAC_OS_X_VERSION_MIN_REQUIRED >= 101200)
 
