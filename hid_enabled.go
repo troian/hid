@@ -4,6 +4,7 @@
 // This file is released under the 3-clause BSD license. Note however that Linux
 // support depends on libusb, released under LGNU GPL 2.1 or later.
 
+//go:build (linux && cgo) || (darwin && !ios && cgo) || (windows && cgo)
 // +build linux,cgo darwin,!ios,cgo windows,cgo
 
 package hid
@@ -61,9 +62,7 @@ import (
 // by the macOS USB HID system calls, which require 2 consecutive method calls
 // for enumeration, causing crashes if called concurrently.
 //
-// For more details, see:
-//   https://developer.apple.com/documentation/iokit/1438371-iohidmanagersetdevicematching
-//   > "subsequent calls will cause the hid manager to release previously enumerated devices"
+// For more details, see:  the hid manager to release previously enumerated devices"
 var enumerateLock sync.Mutex
 
 // Supported returns whether this platform is supported by the HID library or not.

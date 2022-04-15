@@ -36,6 +36,10 @@
 
 #include "hidapi.h"
 
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 120000) // Before macOS 12 Monterey
+  #define kIOMasterPortDefault kIOMainPortDefault
+#endif
+
 /* As defined in AppKit.h, but we don't need the entire AppKit for a single constant. */
 extern const double NSAppKitVersionNumber;
 
@@ -192,6 +196,7 @@ static struct hid_api_version api_version = {
 
 static	IOHIDManagerRef hid_mgr = 0x0;
 static	int is_macos_10_10_or_greater = 0;
+
 
 #if 0
 static void register_error(hid_device *dev, const char *op)
@@ -791,12 +796,12 @@ static io_registry_entry_t hid_open_service_registry_from_path(const char *path)
 		char *endptr;
 		uint64_t entry_id = strtoull(path + 10, &endptr, 10);
 		if (*endptr == '\0') {
-			return IOServiceGetMatchingService(kIOMainPortDefault, IORegistryEntryIDMatching(entry_id));
+			return IOServiceGetMatchingService(kIOMasterPortDefault, IORegistryEntryIDMatching(entry_id));
 		}
 	}
 	else {
 		/* Fallback to older format of the path */
-		return IORegistryEntryFromPath(kIOMainPortDefault, path);
+		return IORegistryEntryFromPath(kIOMasterPortDefault, path);
 	}
 
 	return MACH_PORT_NULL;
@@ -1102,7 +1107,7 @@ int HID_API_EXPORT hid_get_feature_report(hid_device *dev, unsigned char *data, 
 }
 
 int HID_API_EXPORT HID_API_CALL hid_get_input_report(hid_device *dev, unsigned char *data, size_t length)
-{
+{	
 	return get_report(dev, kIOHIDReportTypeInput, data, length);
 }
 
@@ -1190,8 +1195,17 @@ int HID_API_EXPORT_CALL hid_get_indexed_string(hid_device *dev, int string_index
 
 HID_API_EXPORT const wchar_t * HID_API_CALL  hid_error(hid_device *dev)
 {
+	(void) dev;
+	/* TODO: */
+
 	return L"hid_error is not implemented yet";
 }
+
+
+
+
+
+
 
 #if 0
 static int32_t get_location_id(IOHIDDeviceRef device)
