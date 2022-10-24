@@ -1,11 +1,8 @@
 /*******************************************************
  HIDAPI - Multi-Platform library for
  communication with HID devices.
-
  libusb/hidapi Team
-
  Copyright 2021, All Rights Reserved.
-
  At the discretion of the user of this library,
  this software may be licensed under the terms of the
  GNU General Public License v3, a BSD-Style license, or the
@@ -19,6 +16,7 @@
 
 /** @file
  * @defgroup API hidapi API
+ * Since version 0.11.0, @ref HID_API_VERSION >= HID_API_MAKE_VERSION(0, 11, 0).
  */
 
 #ifndef HIDAPI_LIBUSB_H__
@@ -35,12 +33,10 @@ extern "C" {
 		/** @brief Open a HID device using libusb_wrap_sys_device.
 			See https://libusb.sourceforge.io/api-1.0/group__libusb__dev.html#ga98f783e115ceff4eaf88a60e6439563c,
 			for details on libusb_wrap_sys_device.
-
 			@ingroup API
 			@param sys_dev Platform-specific file descriptor that can be recognised by libusb.
 			@param interface_num USB interface number of the device to be used as HID interface.
 			Pass -1 to select first HID interface of the device.
-
 			@returns
 				This function returns a pointer to a #hid_device object on
 				success or NULL on failure.
