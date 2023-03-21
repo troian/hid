@@ -1,7 +1,3 @@
-
-Raw Blame
-
- 
 /*******************************************************
  HIDAPI - Multi-Platform library for
  communication with HID devices.
