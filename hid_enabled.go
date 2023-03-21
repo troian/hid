@@ -11,37 +11,37 @@ package hid
 
 /*
 #cgo CFLAGS: -I./hidapi/hidapi
-
-#cgo !hidraw,linux CFLAGS: -I. -I./libusb/libusb -DDEFAULT_VISIBILITY="" -DOS_LINUX -D_GNU_SOURCE -DPLATFORM_POSIX
+#cgo CFLAGS: -I./libusb/libusb
+#cgo !hidraw,linux CFLAGS: -I. -I./libusb/libusb -DDEFAULT_VISIBILITY="" -DOS_LINUX -D_GNU_SOURCE -DPLATFORM_POSIX -DHAVE_CLOCK_GETTIME
 #cgo !hidraw,linux,!android LDFLAGS: -lrt
 #cgo !hidraw,linux,noiconv CFLAGS: -DNO_ICONV
 #cgo hidraw,linux CFLAGS: -DOS_LINUX -D_GNU_SOURCE -DHIDRAW
 #cgo hidraw,linux,!android pkg-config: libudev
 #cgo darwin CFLAGS: -DOS_DARWIN
 #cgo darwin LDFLAGS: -framework CoreFoundation -framework IOKit -framework AppKit
-#cgo windows CFLAGS: -DOS_WINDOWS
+#cgo windows CFLAGS: -DOS_WINDOWS -I./hidapi/windows
 #cgo windows LDFLAGS: -lsetupapi
 
 #ifdef OS_LINUX
 	#ifdef HIDRAW
-	#include "hidapi/linux/hid.c"
+		#include "hidapi/linux/hid.c"
 	#else
-	#include <poll.h>
-	#include "os/events_posix.c"
-	#include "os/threads_posix.c"
+		#include <poll.h>
+		#include "os/events_posix.c"
+		#include "os/threads_posix.c"
 
-	#include "os/linux_usbfs.c"
-	#include "os/linux_netlink.c"
+		#include "os/linux_usbfs.c"
+		#include "os/linux_netlink.c"
 
-	#include "core.c"
-	#include "descriptor.c"
-	#include "hotplug.c"
-	#include "io.c"
-	#include "strerror.c"
-	#include "sync.c"
+		#include "core.c"
+		#include "descriptor.c"
+		#include "hotplug.c"
+		#include "io.c"
+		#include "strerror.c"
+		#include "sync.c"
 
-	#undef _GNU_SOURCE // it's already defined in the c-file
-	#include "hidapi/libusb/hid.c"
+		#undef _GNU_SOURCE // it's already defined in the c-file
+		#include "hidapi/libusb/hid.c"
 	#endif
 #elif OS_DARWIN
 	#include "hidapi/mac/hid.c"
@@ -74,9 +74,9 @@ func Supported() bool {
 
 // Enumerate returns a list of all the HID devices attached to the system which
 // match the vendor and product id:
-//  - If the vendor id is set to 0 then any vendor matches.
-//  - If the product id is set to 0 then any product matches.
-//  - If the vendor and product id are both 0, all HID devices are returned.
+//   - If the vendor id is set to 0 then any vendor matches.
+//   - If the product id is set to 0 then any product matches.
+//   - If the vendor and product id are both 0, all HID devices are returned.
 func Enumerate(vendorID uint16, productID uint16) []DeviceInfo {
 	enumerateLock.Lock()
 	defer enumerateLock.Unlock()
