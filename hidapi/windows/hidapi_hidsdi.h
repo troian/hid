@@ -1,8 +1,11 @@
 /*******************************************************
  HIDAPI - Multi-Platform library for
  communication with HID devices.
+
  libusb/hidapi Team
+
  Copyright 2022, All Rights Reserved.
+
  At the discretion of the user of this library,
  this software may be licensed under the terms of the
  GNU General Public License v3, a BSD-Style license, or the

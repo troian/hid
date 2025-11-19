@@ -1,3 +1,4 @@
+//go:build dummy
 // +build dummy
 
 // This file is part of a workaround for `go mod vendor` which won't vendor
@@ -15,7 +16,6 @@ package hid
 
 import (
 	_ "github.com/zondax/hid/hidapi"
-	_ "github.com/zondax/hid/hidapi/hidapi"
 	_ "github.com/zondax/hid/hidapi/libusb"
 	_ "github.com/zondax/hid/hidapi/linux"
 	_ "github.com/zondax/hid/hidapi/mac"
