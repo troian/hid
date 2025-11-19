@@ -2,12 +2,11 @@
 [![GoDoc][docimg]][docurl]
 [![AppVeyor][appveyorimg]][appveyorurl]
 
-[travisimg]:   https://travis-ci.org/Zondax/hid.svg?branch=master
-[travisurl]:   https://travis-ci.org/Zondax/hid
-[appveyorimg]: https://ci.appveyor.com/api/projects/status/8lngogiq0dhk78hh/branch/master?svg=true
-[appveyorurl]: https://ci.appveyor.com/project/Zondax/hid
-[docimg]:      https://pkg.go.dev/badge/github.com/Zondax/hid
-[docurl]:      https://pkg.go.dev/github.com/Zondax/hid
+[travisimg]:   https://app.travis-ci.com/troian/hid.svg?branch=master
+[travisurl]:   https://app.travis-ci.com/github/troian/hid
+[appveyorurl]: https://ci.appveyor.com/project/troian/hid
+[docimg]:      https://pkg.go.dev/badge/github.com/troian/hid
+[docurl]:      https://pkg.go.dev/github.com/troian/hid
 
 # Gopher Interface Devices (USB HID)
 
@@ -21,8 +20,11 @@ On Linux the package uses either [`libusb`](https://github.com/libusb/libusb) (d
 All of these dependencies are vendored directly into the repository and wrapped using CGO,
 making the `hid` package self-contained and go-gettable.
 
-Supported platforms at the moment are Linux, macOS and Windows (exclude constraints are also specified
-for Android and iOS to allow smoother vendoring into cross platform projects).
+Supported platforms at the moment are:
+- Linux
+- macOS (darwin but not iOS)
+- Windows
+- Android (to enumerate and open devices, native USBManager needs to be used)
 
 ## Libusb backend selection (linux only)
 
@@ -52,9 +54,9 @@ such, `gowchar` was also vendored in inline (copyright headers and origins prese
 
 The components of `hid` are licensed as such:
 
- * `hidapi` is released under the [GNU LGPL 3/3-clause BSD/HIDAPI](https://github.com/libusb/hidapi/blob/master/LICENSE.txt) license.
- * `libusb` is released under the [GNU LGPL 2.1](https://github.com/libusb/libusb/blob/master/COPYING) license.
- * `go.hid` is released under the [2-clause BSD](https://github.com/GeertJohan/go.hid/blob/master/LICENSE) license.
- * `gowchar` is released under the [3-clause BSD](https://github.com/orofarne/gowchar/blob/master/LICENSE) license.
+* `hidapi` is released under the [GNU LGPL 3/3-clause BSD/HIDAPI](https://github.com/libusb/hidapi/blob/master/LICENSE.txt) license.
+* `libusb` is released under the [GNU LGPL 2.1](https://github.com/libusb/libusb/blob/master/COPYING) license.
+* `go.hid` is released under the [2-clause BSD](https://github.com/GeertJohan/go.hid/blob/master/LICENSE) license.
+* `gowchar` is released under the [3-clause BSD](https://github.com/orofarne/gowchar/blob/master/LICENSE) license.
 
 Given the above, `hid` is licensed under GNU LGPL 2.1 or later on Linux and 3-clause BSD on other platforms.

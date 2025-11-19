@@ -1,8 +1,11 @@
 /*******************************************************
  HIDAPI - Multi-Platform library for
  communication with HID devices.
+
  libusb/hidapi Team
+
  Copyright 2022, All Rights Reserved.
+
  At the discretion of the user of this library,
  this software may be licensed under the terms of the
  GNU General Public License v3, a BSD-Style license, or the
@@ -25,6 +28,13 @@
 
 /* This part of the header mimics hidpi.h,
     but only what is used by HIDAPI */
+
+typedef enum _HIDP_REPORT_TYPE
+{
+    HidP_Input,
+    HidP_Output,
+    HidP_Feature
+} HIDP_REPORT_TYPE;
 
 typedef struct _HIDP_PREPARSED_DATA * PHIDP_PREPARSED_DATA;
 

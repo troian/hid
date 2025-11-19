@@ -1,10 +1,14 @@
 /*******************************************************
  HIDAPI - Multi-Platform library for
  communication with HID devices.
+
  Alan Ott
  Signal 11 Software
+
  libusb/hidapi Team
+
  Copyright 2022, All Rights Reserved.
+
  At the discretion of the user of this library,
  this software may be licensed under the terms of the
  GNU General Public License v3, a BSD-Style license, or the
@@ -43,6 +47,10 @@
 #ifndef ICONV_CONST
 #define ICONV_CONST
 #endif
+#endif
+
+#if defined(__ANDROID__)
+#include <android/log.h>
 #endif
 
 #include "hidapi_libusb.h"
@@ -113,7 +121,11 @@ extern "C" {
 #endif
 
 #ifdef DEBUG_PRINTF
+#ifdef __ANDROID__
+#define LOG(...) __android_log_print(ANDROID_LOG_INFO, "hidapi", __VA_ARGS__)
+#else
 #define LOG(...) fprintf(stderr, __VA_ARGS__)
+#endif
 #else
 #define LOG(...) do {} while (0)
 #endif
@@ -329,6 +341,7 @@ static int get_usage(uint8_t *report_descriptor, size_t size,
 /* The libusb version included in FreeBSD < 10 doesn't have this function. In
    mainline libusb, it's inlined in libusb.h. This function will bear a striking
    resemblance to that one, because there's about one way to code it.
+
    Note that the data parameter is Unicode in UTF-16LE encoding.
    Return value is the number of bytes in data, or LIBUSB_ERROR_*.
  */
@@ -434,6 +447,7 @@ static wchar_t *get_usb_string(libusb_device_handle *dev, uint8_t idx)
 	   code points that can be represented as a single UTF-16 character,
 	   and will incorrectly convert any code points which require more
 	   than one UTF-16 character.
+
 	   Skip over the first character (2-bytes).  */
 	len -= 2;
 	str = (wchar_t*) malloc((len / 2 + 1) * sizeof(wchar_t));
@@ -520,12 +534,12 @@ static char *make_path(libusb_device *dev, int config_number, int interface_numb
 	return strdup(str);
 }
 
-HID_API_EXPORT const struct hid_api_version* HID_API_CALL hid_version()
+HID_API_EXPORT const struct hid_api_version* HID_API_CALL hid_version(void)
 {
 	return &api_version;
 }
 
-HID_API_EXPORT const char* HID_API_CALL hid_version_str()
+HID_API_EXPORT const char* HID_API_CALL hid_version_str(void)
 {
 	return HID_API_VERSION_STR;
 }
@@ -827,8 +841,10 @@ struct hid_device_info  HID_API_EXPORT *hid_enumerate(unsigned short vendor_id, 
 							cur_dev = tmp;
 						}
 
-						if (res >= 0)
+						if (res >= 0) {
 							libusb_close(handle);
+							handle = NULL;
+						}
 					}
 				} /* altsettings */
 			} /* interfaces */
@@ -1622,6 +1638,12 @@ int HID_API_EXPORT_CALL hid_get_indexed_string(hid_device *dev, int string_index
 	}
 	else
 		return -1;
+}
+
+
+int HID_API_EXPORT_CALL hid_get_report_descriptor(hid_device *dev, unsigned char *buf, size_t buf_size)
+{
+	return hid_get_report_descriptor_libusb(dev->device_handle, dev->interface, dev->report_descriptor_size, buf, buf_size);
 }
 
 
